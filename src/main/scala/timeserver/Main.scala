@@ -29,4 +29,7 @@ object Main extends IOApp.Simple:
       .withPort(port"8080")
       .withHttpApp(serverLogic)
 
-  override def run: IO[Unit] = server.build.useForever
+  override def run: IO[Unit] = 
+    for
+      _ <- server.build.useForever
+    yield ()
