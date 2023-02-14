@@ -13,7 +13,8 @@ test:
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   stage: ci
-  needs: build
+  needs:
+    - build
   script:
     scala-cli test .
 
@@ -21,7 +22,8 @@ docker-build:
   rules:
   - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   stage: ci
-  needs: test
+  needs: 
+    - test
   script: 
     - scala-cli package 
       --docker src/main/scala/timeserver/Main.scala 
@@ -33,5 +35,6 @@ docker-publish:
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   stage: ci
-  needs: docker-build
+  needs: 
+    - docker-build
   script: docker push nikololiahim/timeserver:latest
