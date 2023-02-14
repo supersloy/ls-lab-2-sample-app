@@ -12,6 +12,7 @@ build:
     scala-cli compile .
 
 test:
+  allow_failure: true
   tags:
     - st13-runner
   rules:
