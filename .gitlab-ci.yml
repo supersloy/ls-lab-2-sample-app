@@ -3,6 +3,8 @@ stages:
   - cd
 
 build:
+  tags:
+    - st13-runner
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   stage: ci
@@ -10,6 +12,8 @@ build:
     scala-cli compile .
 
 test:
+  tags:
+    - st13-runner
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   stage: ci
@@ -19,6 +23,8 @@ test:
     scala-cli test .
 
 docker-build:
+  tags:
+    - st13-runner
   rules:
   - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   stage: ci
@@ -32,6 +38,8 @@ docker-build:
       --docker-image-tag latest
 
 docker-publish:
+  tags:
+      - st13-runner
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   stage: ci
