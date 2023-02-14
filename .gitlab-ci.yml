@@ -31,8 +31,8 @@ docker-build:
   stage: ci
   needs: 
     - test
-  script: 
-    - scala-cli package 
+  script:
+    - sudo scala-cli package 
       --docker src/main/scala/timeserver/Main.scala 
       --docker-from openjdk:17 
       --docker-image-repository timeserver
@@ -46,4 +46,4 @@ docker-publish:
   stage: ci
   needs: 
     - docker-build
-  script: docker push nikololiahim/timeserver:latest
+  script: sudo docker push nikololiahim/timeserver:latest
