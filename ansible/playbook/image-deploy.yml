@@ -1,0 +1,14 @@
+- name: Deploy application in docker
+  hosts: vkhost
+  become: true
+  tasks:
+    - name: Pull default Docker image
+      community.docker.docker_image:
+        name: nikololiahim/moscow_time_scala
+        source: pull
+
+    - name: Create default container
+      community.docker.docker_container:
+        name: moscow-time
+        image: nikololiahim/moscow_time_scala
+      restart_policy: always

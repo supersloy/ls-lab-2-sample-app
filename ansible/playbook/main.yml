@@ -1,0 +1,7 @@
+- name: Run docker installation playbook
+  include_tasks:
+    file: docker-install.yml
+
+- name: Run deploying docker image playbook
+  include_tasks:
+    file: image-deploy.yml
